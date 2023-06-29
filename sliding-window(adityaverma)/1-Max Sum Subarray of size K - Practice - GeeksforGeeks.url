@@ -1,2 +1,28 @@
 [InternetShortcut]
 URL=https://practice.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1
+
+code:
+class Solution{   
+public:
+    long maximumSumSubarray(int k, vector<int> &nums , int n){
+        // code here 
+        if(n<k) return 0;
+        int i=0;
+        int j=0;
+        long long maxsum =  INT_MIN;
+        long long sum = 0;
+        while(j<n)
+        {
+            sum += nums[j];
+            if(j-i+1<k){
+                j++;
+            }else if(j-i+1==k){
+                maxsum =  max(maxsum,sum);
+                sum -= nums[i];
+                i++;
+                j++;
+            }
+        }
+        return maxsum;
+    }
+};
